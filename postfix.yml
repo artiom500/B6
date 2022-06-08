@@ -1,0 +1,21 @@
+---
+- hosts: test
+  gather_facts: yes
+  tasks:
+  - name: install posfix
+    yum:
+        name: postfix
+        state: present
+    tags: "init postfix"
+
+  - name: start postfix
+    service:
+        name: postfix
+        state: started
+    tags: "init postfix"
+
+  - name: drop posfix
+    yum:
+       name: postfix
+       state: absent
+    tags: "drop postfix"
